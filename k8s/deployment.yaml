@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: grayscale-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: grayscale
+
+  template:
+    metadata:
+      labels:
+        app: grayscale
+
+    spec:
+      containers:
+        - name: grayscale-container
+          image: grayscale-website:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80

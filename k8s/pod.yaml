@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: grayscale-pod
+  labels:
+    app: grayscale
+
+spec:
+  containers:
+    - name: grayscale-container
+      image: grayscale-website:latest
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 80

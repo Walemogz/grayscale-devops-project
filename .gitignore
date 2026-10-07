@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+
+# macOS
+.DS_Store
+
+# Build output
+dist/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
