@@ -8,25 +8,32 @@ pipeline {
             }
         }
 
+        stage('Build Application') {
+            steps {
+                bat 'npm install'
+                bat 'npm run build'
+            }
+        }
+
         stage('Check Docker') {
             steps {
                 bat 'docker --version'
             }
-            
         }
+
         stage('Docker Build') {
-    steps {
-        withCredentials([
-            usernamePassword(
-                credentialsId: 'dockerhub-jenkins',
-                usernameVariable: 'DOCKER_USERNAME',
-                passwordVariable: 'DOCKER_PASSWORD'
-            )
-        ]) {
-            bat 'powershell -Command "$env:DOCKER_PASSWORD | docker login -u $env:DOCKER_USERNAME --password-stdin"'
-            bat 'docker build -t grayscale-website:latest .'
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-jenkins',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    bat 'powershell -Command "$env:DOCKER_PASSWORD | docker login -u $env:DOCKER_USERNAME --password-stdin"'
+                    bat 'docker build -t grayscale-website:latest .'
+                }
+            }
         }
-    }
-}
     }
 }
