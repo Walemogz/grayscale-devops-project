@@ -31,7 +31,7 @@ pipeline {
                     )
                 ]) {
                     bat 'powershell -Command "$env:DOCKER_PASSWORD | docker login -u $env:DOCKER_USERNAME --password-stdin"'
-                    bat 'docker build -t grayscale-website:latest .'
+                    bat 'docker build -t walemogz/grayscale-website:latest .'
                 }
             }
         }
