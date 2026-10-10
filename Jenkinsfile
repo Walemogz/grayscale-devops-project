@@ -12,6 +12,12 @@ pipeline {
             steps {
                 bat 'docker --version'
             }
+            
         }
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t grayscale-website:latest .'
+    }
+}
     }
 }
